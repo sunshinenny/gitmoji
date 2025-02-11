@@ -2,7 +2,7 @@
 
 Hello!
 
-Thanks for contributing on [gitmoji](https://github.com/carloscuesta/gitmoji). Before implementing new features and changes, feel free to [submit an issue](https://github.com/carloscuesta/gitmoji/issues/new). We're going to talk here :stuck_out_tongue_winking_eye:.
+Thanks for contributing on [gitmoji](https://github.com/carloscuesta/gitmoji). Before implementing new features and changes, please [submit an issue](https://github.com/carloscuesta/gitmoji/issues/new). We will discuss here! :stuck_out_tongue_winking_eye:.
 
 If you would like to add a new emoji to gitmoji, fill the provided `ISSUE_TEMPLATE` when creating an issue and take a look at the contributing section.
 
@@ -11,19 +11,18 @@ If you would like to add a new emoji to gitmoji, fill the provided `ISSUE_TEMPLA
 1. Fork [this repository](https://github.com/carloscuesta/gitmoji/fork).
 2. Create a new branch with the feature name. (Eg: add-emoji-deploy, fix-website-header)
 3. Make your changes.
-4. Test you changes by running `yarn test`
-   - 4.1. If the snapshots are failing run `yarn test -u` and be sure that the new snapshots match your changes
+4. Test you changes by running `pnpm turbo test`
+   - 4.1. If the snapshots are failing run `pnpm turbo test -- -u` and be sure that the new snapshots match your changes
 5. Commit your changes. Don't forget to add a commit title with an emoji and a description.
 6. Push your changes.
 7. Submit your pull request.
 
 ## How to add a gitmoji
 
-A **gitmoji** should define an action not a scope, take that into consideration when trying to suggest a new addition!
-
-1. Open the **gitmojis.json** file located at `src/data/gitmojis.json`.
+1. Open the **gitmojis.json** file located at `packages/gitmojis/src/gitmojis.json`.
 2. Add your emoji using the following code inside of the `gitmojis array []`:
-3. Save the file and create a pull request.
+3. Add a new color to [the emojiColorsMap.js](https://github.com/carloscuesta/gitmoji/blob/master/packages/website/src/components/GitmojiList/emojiColorsMap.js) file. Matching the name you added at the JSON file.
+4. Save the file and create a pull request.
 
 ```json
 {
@@ -38,11 +37,9 @@ A **gitmoji** should define an action not a scope, take that into consideration 
 
 If you want to find the hexadecimal entity of icon, search for it in this site: <a>http://graphemica.com/</a>
 
-Then, after that you'll need to add a new color to [the emojiColorsMap.js](https://github.com/carloscuesta/gitmoji/blob/master/src/components/GitmojiList/emojiColorsMap.js) file.
+Every suggestion will be reviewed carefully, ⚠️ take into account that not every suggestion will be accepted!
 
-You must follow the convention of adding a new item to the `gitmojis object`. That matches the name that you added at the json file.
-
-## How to start gitmoji
+## How to start the website
 
 If you want to make changes to the site, follow the next steps:
 
@@ -53,10 +50,10 @@ $ git clone https://github.com/carloscuesta/gitmoji.git
 $ cd gitmoji
 ```
 
-2. Install the dependencies and start the development task.
+2. Install the dependencies and start the development server.
 
 ```bash
-$ yarn install && yarn run dev
+$ pnpm install && pnpm run dev
 ```
 
 The project is built with [Next.js](http://nextjs.org)

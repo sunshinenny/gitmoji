@@ -5,10 +5,21 @@ node_modules/
 .next
 out/
 coverage/
-public/robots.txt
-public/sitemap.xml
+.eslintcache
+*.log
+.pnp.*
 
 # next-pwa
-public/workbox-*.js
-public/sw.js
-public/*.map
+packages/website/public/workbox-*.js
+packages/website/public/workbox-*.js
+packages/website/public/sw.js
+packages/website/public/sw.js
+packages/website/public/*.map
+
+# next-sitemap
+packages/website/public/robots.txt
+packages/website/public/sitemap.xml
+packages/website/public/sitemap-*.xml
+
+# TS
+*.tsbuildinfo

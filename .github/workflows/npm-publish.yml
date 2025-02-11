@@ -2,18 +2,29 @@ name: NPM Publish
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 jobs:
   npm-publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install dependencies 📦
-      run: yarn
-    - name: Publish package to NPM 🚀
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
-      run: npm publish --token=${{ env.NPM_TOKEN }}
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+          node-version: "18"
+      - name: Install dependencies 📦
+        run: pnpm install
+      - name: Build 👷‍♂️
+        run: pnpm turbo run build --filter=gitmojis
+      - name: Publish package to NPM 🚀
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
+        run: |
+          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+          pnpm turbo publishPackage
+      - name: Publish GitHub Release 📝
+        uses: softprops/action-gh-release@v2
+        with:
+          name: gitmoji ${{github.ref_name}}
+          generate_release_notes: true
